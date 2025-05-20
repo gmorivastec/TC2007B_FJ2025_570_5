@@ -74,13 +74,40 @@ class _StatefulExampleWidgetState extends State<StatefulExampleWidget> {
         style: textStyle
       ),
       onTap: () {
+
+        // mensajito emergente de prueba
         Fluttertoast.showToast(
           msg: "TOCASTE EL TILE! $value",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.SNACKBAR,
           timeInSecForIosWeb: 1
         );
+
+        // navegación 
+        Navigator.push(
+          context,
+          MaterialPageRoute( 
+            builder: (context) => DetailWidget(externalArg: value,)
+          )
+        );
       },
+    );
+  }
+}
+
+class DetailWidget extends StatelessWidget {
+  const DetailWidget({super.key, required this.externalArg});
+
+  final String externalArg;
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("DETAIL VIEW")),
+      body: Center(
+        // child: Image.network('https://flutter.github.io/assets-for-api-docs/assets/widgets/owl.jpg')
+        child: Text("ARG EXTERNO: $externalArg")
+      )
     );
   }
 }
